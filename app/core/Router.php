@@ -5,8 +5,8 @@
 
 class Router
 {
-    private $routes = [];
-    private $middlewares = [];
+    private $routes = array();
+    private $middlewares = array();
 
     public function loadRoutes($routesFile)
     {
@@ -64,7 +64,7 @@ class Router
         foreach ($this->routes[$method] as $path => $controller) {
             $pattern = $this->pathToPattern($path);
             if (preg_match($pattern, $uri, $matches)) {
-                return ['controller' => $controller, 'matches' => $matches];
+                return array('controller' => $controller, 'matches' => $matches);
             }
         }
 
@@ -81,7 +81,9 @@ class Router
 
     private function executeRoute($route)
     {
-        [$class, $method] = explode('@', $route['controller']);
+        $parts = explode('@', $route['controller']);
+        $class = $parts[0];
+        $method = $parts[1];
         
         if (!class_exists($class)) {
             throw new Exception('Contrôleur non trouvé: ' . $class);
@@ -94,7 +96,7 @@ class Router
 
         // Passer les paramètres dynamiques
         $params = array_slice($route['matches'], 1);
-        call_user_func_array([$controller, $method], $params);
+        call_user_func_array(array($controller, $method), $params);
     }
 }
 ?>
