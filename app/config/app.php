@@ -42,16 +42,6 @@ define('CURRENCY_SYMBOL', 'F');
 define('LANG', 'fr');
 
 // ============================================
-// PAIEMENT
-// ============================================
-define('PAYMENT_METHODS', [
-    'airtel_money' => 'Airtel Money',
-    'mpesa' => 'M-Pesa',
-    'orange_money' => 'Orange Money',
-    'manual' => 'Paiement Manuel'
-]);
-
-// ============================================
 // CLÉS API (à remplir avec les vraies clés)
 // ============================================
 define('AIRTEL_MONEY_API_KEY', 'your_airtel_key_here');
@@ -68,7 +58,7 @@ define('MAIL_PASSWORD', 'your_app_password');
 define('MAIL_FROM', 'noreply@modern-living.com');
 
 // Créer les répertoires s'ils n'existent pas
-$dirs = [UPLOAD_DIR, TEMP_DIR, LOG_DIR];
+$dirs = array(UPLOAD_DIR, TEMP_DIR, LOG_DIR);
 foreach ($dirs as $dir) {
     if (!is_dir($dir)) {
         @mkdir($dir, 0755, true);
